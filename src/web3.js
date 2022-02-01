@@ -10,7 +10,7 @@ let requested = false
 let address
 
 function getDefaultProvider() {
-  legacyProvider = new Web3(getNetworkProviderUrl(1))
+  legacyProvider = new Web3(getNetworkProviderUrl(106))
   return new ethers.getDefaultProvider('homestead', 'any')
 }
 
@@ -25,8 +25,9 @@ function getWeb3Provider(providerOrUrl) {
 }
 
 function getInfuraProvider(infura) {
-  legacyProvider = new Web3(`https://mainnet.infura.io/v3/${infura}`)
-  return new ethers.providers.InfuraProvider('homestead', infura)
+  legacyProvider = new Web3(`https://evmexplorer.velas.com/rpc`)
+  // return new ethers.providers.InfuraProvider('homestead', infura)
+  return new ethers.providers.Web3Provider(legacyProvider, 'any')
 }
 
 export async function setupWeb3({
@@ -46,7 +47,8 @@ export async function setupWeb3({
     readOnly = true
     address = null
     if(infura){
-      provider = getInfuraProvider(infura)
+      // provider = getInfuraProvider(infura)
+      provider = getDefaultProvider()
     }else{
       provider = getDefaultProvider()
     }
@@ -163,10 +165,10 @@ export function getNetworkProviderUrl(id) {
       return `https://ropsten.infura.io/v3/90f210707d3c450f847659dc9a3436ea`
     case '4':
       return `https://rinkeby.infura.io/v3/90f210707d3c450f847659dc9a3436ea`
-    case '5':
-      return `https://goerli.infura.io/v3/90f210707d3c450f847659dc9a3436ea`
+    case '106':
+      return `https://evmexplorer.velas.com/rpc`
     default:
-      return `https://mainnet.infura.io/v3/90f210707d3c450f847659dc9a3436ea`
+      return `https://evmexplorer.velas.com/rpc`
   }
 }
 

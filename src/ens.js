@@ -55,16 +55,16 @@ function getLabelhash(label) {
 
 const contracts = {
   1: {
-    registry: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
+    registry: '0x990E60405CCDAe7B191f0C148224fc205b355D92'
   },
   3: {
-    registry: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
+    registry: '0x990E60405CCDAe7B191f0C148224fc205b355D92'
   },
   4: {
-    registry: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
+    registry: '0x990E60405CCDAe7B191f0C148224fc205b355D92'
   },
-  5: {
-    registry: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
+  106: {
+    registry: '0x990E60405CCDAe7B191f0C148224fc205b355D92'
   }
 }
 
@@ -95,6 +95,7 @@ export class ENS {
   async getOwner(name) {
     const namehash = getNamehash(name)
     const owner = await this.ENS.owner(namehash)
+    console.log("getOwner, Owner: ", owner)
     return owner
   }
 
@@ -516,7 +517,7 @@ export class ENS {
 
   async createSubdomain(name) {
     const account = await getAccount()
-    const publicResolverAddress = await this.getAddress('resolver.eth')
+    const publicResolverAddress = await this.getAddress('resolver.vlx')
     try {
       return this.setSubnodeRecord(name, account, publicResolverAddress)
     } catch (e) {

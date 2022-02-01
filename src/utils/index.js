@@ -35,11 +35,11 @@ async function getEtherScanAddr() {
     case 3:
     case '3':
       return 'https://ropsten.etherscan.io/'
-    case 4:
-    case '4':
-      return 'https://rinkeby.etherscan.io/'
+    case 106:
+    case '106':
+      return 'https://evmexplorer.velas.com/'
     default:
-      return 'https://etherscan.io/'
+      return 'https://evmexplorer.velas.com/'
   }
 }
 
@@ -52,6 +52,8 @@ async function getEnsStartBlock() {
     case 3:
     case '3':
       return 25409
+    case '106':
+      return 1643732909
     default:
       return 0
   }
@@ -106,7 +108,7 @@ const parseSearchTerm = (term, validTld) => {
     const termArray = term.split('.')
     const tld = term.match(regex) ? term.match(regex)[0] : ''
     if (validTld) {
-      if (tld === 'eth' && [...termArray[termArray.length - 2]].length < 3) { // code-point length
+      if (tld === 'vlx' && termArray[termArray.length - 2].length < 3) {
         return 'short'
       }
       return 'supported'
