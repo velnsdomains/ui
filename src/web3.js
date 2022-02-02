@@ -11,7 +11,7 @@ let address
 
 function getDefaultProvider() {
   legacyProvider = new Web3(getNetworkProviderUrl(106))
-  return new ethers.getDefaultProvider('homestead', 'any')
+  return new ethers.providers.JsonRpcProvider(getNetworkProviderUrl(106), 'any')
 }
 
 function getJsonRpcProvider(providerOrUrl) {
@@ -24,11 +24,10 @@ function getWeb3Provider(providerOrUrl) {
   return new ethers.providers.Web3Provider(providerOrUrl, 'any')
 }
 
-function getInfuraProvider(infura) {
-  legacyProvider = new Web3(`https://evmexplorer.velas.com/rpc`)
-  // return new ethers.providers.InfuraProvider('homestead', infura)
-  return new ethers.providers.Web3Provider(legacyProvider, 'any')
-}
+// function getInfuraProvider(infura) {
+//   return new ethers.providers.InfuraProvider('homestead', infura)
+//   return new ethers.providers.Web3Provider(legacyProvider, 'any')
+// }
 
 export async function setupWeb3({
   customProvider,
